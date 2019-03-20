@@ -1,0 +1,15 @@
+
+@startuml
+left to right direction
+skinparam packageStyle rectangle
+actor KullaniciArayuzu
+actor Sensor
+actor Tekerlek
+rectangle Sistem{
+   Sensor -- (ÇarpismaKontrolü)
+   KullaniciArayuzu -- (Navigasyon)
+   (Navigasyon) .> (YolPlanlama) : include
+   (YolPlanlama) .> (ÇarpismaKontrolü) : extends
+   (Navigasyon) -- Tekerlek
+}
+@enduml
