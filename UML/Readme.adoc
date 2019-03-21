@@ -26,7 +26,7 @@ Oluşturulan ilk kullanım durumu diyagramında temel gereksinimler belirlenir.
 7. Tekerlek, sisteme hareket etmeyi durdurduğunu ve kullanım durumunun bittiğini bildirir.
 |=======================
 
-*Plantuml V1.0*
+*V1.0*
 
 ----
 @startuml
@@ -59,7 +59,7 @@ Bu yüzden Çarpışma Kontrolü işleminin hareket planlaması da yapması gere
 image::UsecaseV2.png[]
 
 
-*Plantuml V2.0*
+*V2.0*
 
 ----
 @startuml
@@ -89,7 +89,7 @@ rectangle Sistem{
 
 image::UsecaseV3.png[]
 
-*Plantuml V3.0*
+*V3.0*
 
 ----
 @startuml
