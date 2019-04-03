@@ -4,6 +4,7 @@ Singleton pattern veritabanı bağlantılarında, port bağlantılarında, yada 
 Random Rapidly Tree kullanarak yapılacak yol planlama projesinde singleton pattern kullanımı harita üzerindeki işlemlerde gösterilmiştir.
 Projenin aslında singleton pattern zorunluluğu yoktur.
 
+----
 class Map_singleton
 {
 private:
@@ -26,3 +27,4 @@ Map_singleton *Map_singleton::CreateMap()
 	}
 	return map;
 }
+----
