@@ -2,7 +2,7 @@ Singleton pattern veritabanı bağlantılarında, port bağlantılarında, yada 
 
 Random Rapidly Tree kullanarak yapılacak yol planlama projesinde singleton pattern kullanımı harita üzerindeki işlemlerde gösterilmiştir.
 
-[]https://github.com/ozdenurucar/YazilimKaliplari/blob/master/S%C4%B1n%C4%B1f%20Diyagramlar%C4%B1/class_diagram.png
+image::https://github.com/ozdenurucar/YazilimKaliplari/blob/master/S%C4%B1n%C4%B1f%20Diyagramlar%C4%B1/class_diagram.png[]
 
 
 
