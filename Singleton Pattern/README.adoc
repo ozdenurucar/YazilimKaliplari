@@ -1,10 +1,8 @@
-ifndef::env-site[]
-:toc: left
-:icons: font
-:idprefix:
-:idseparator: -
-:sectanchors:
-:source-highlighter: highlightjs
+\ifdef::env-github[] <1> (1)
+:imagesdir: https://gist.githubusercontent.com/path/to/gist/revision/dir/with/all/images
+endif::[]
+\ifndef::env-github[] <2>
+:imagesdir: ./
 endif::[]
 
 Singleton pattern veritabanı bağlantılarında, port bağlantılarında, yada dosya işlemleri gibi tek bir nesneye ihtiyaç duyduğumuz zamanlarda kullanırız.
