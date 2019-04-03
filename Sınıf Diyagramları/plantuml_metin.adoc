@@ -1,0 +1,90 @@
+[plantuml, diagram-classes, png]
+-- 
+@startuml
+
+Class Robot{
+float xloc
+float yloc
+float sonarSpeed
+
+}
+
+Class Wheel {
+int wheelSpeed
+int wheelIndex
+}
+
+
+Class Sensor{
+
+string getType()
+float getRot()
+float getX()
+float getY()
+float getZ()
+}
+
+Class RRTPlanner{
+
+- ros::NodeHandle node_handle_
+- std::vector<bool> obstacle_map_
+- costmap_2d::Costmap2DROS* costmap_ros_
+-costmap_2d::Costmap2D* costmap_
+-float x_origin_
+-float y_origin_
+-float x_goal_
+-float y_goal_
+-unsigned int map_width_cells_
+-unsigned int map_height_cells_
+-std::vector<turtlebot_rrt::Vertex> vertex_list_
++float GetDistance(std::pair<float, +float> start_point,std::pair<float, float> end_point)
++std::vector<bool> getObstacleMap()
++std::vector<turtlebot_rrt::Vertex> getVertexTree()
++int GetClosestVertex(std::pair<float, float> random_point)
++void addVertex(turtlebot_rrt::Vertex new_vertex)
++bool ReachedGoal(int new_vertex)
++int FindPath(const +geometry_msgs::PoseStamped& start,const geometry_msgs::PoseStamped& goal)
+
+}
+
+Class Vertex {
+
+-float x
+-float y
+-int index
+-int parent_index
++Vertex()
++Vertex(float x, float y, int index, int parent_index)
++~Vertex()
++void set_location(float x, float y)
++void set_index(int index)
++void set_parent(int index)
++std::pair<float, float> get_location()
++int get_index()
++int get_parent()
+}
+Class RosParamServer
+{
+
+}
+
+Class CollisionDetect{
+
++bool IsSafe(std::pair<float, float> start_point,std::pair<float, float> end_point)
+
+}
+
+Class Navigation{
+
+
+}
+
+Robot o-- Sensor
+Robot o-- Wheel
+Navigation -- RRTPlanner
+Navigation -- CollisionDetect
+Robot -- Navigation
+RRTPlanner *-- Vertex
+
+@enduml
+--
