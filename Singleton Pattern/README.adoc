@@ -1,3 +1,11 @@
+ifndef::env-site[]
+:toc: left
+:icons: font
+:idprefix:
+:idseparator: -
+:sectanchors:
+:source-highlighter: highlightjs
+endif::[]
 
 Singleton pattern veritabanı bağlantılarında, port bağlantılarında, yada dosya işlemleri gibi tek bir nesneye ihtiyaç duyduğumuz zamanlarda kullanırız.
 
@@ -13,7 +21,7 @@ Projenin aslında singleton pattern zorunluluğu yoktur.
 class Map_singleton
 {
 private:
-	static Map_singleton *map;<1>
+	static Map_singleton *map; <1>
 	nav_msgs::OccupancyGrid mapData; 
 public:
 	static Map_singleton *CreateMap(void); <2>
@@ -24,7 +32,7 @@ public:
 	}*/
 };
 
-Map_singleton *Map_singleton::CreateMap()<4>
+Map_singleton *Map_singleton::CreateMap() <4>
 {
 	if (map == nullptr)
 	{
