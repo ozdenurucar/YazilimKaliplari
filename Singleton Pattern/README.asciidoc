@@ -13,18 +13,18 @@ Projenin aslında singleton pattern zorunluluğu yoktur.
 class Map_singleton
 {
 private:
-	static Map_singleton *map;// sınıfa ait mapdata nesnesi.
-	nav_msgs::OccupancyGrid mapData;
+	static Map_singleton *map;# \<1>
+	nav_msgs::OccupancyGrid mapData; 
 public:
-	static Map_singleton *CreateMap(void);
-	void SetData(const nav_msgs::OccupancyGrid::ConstPtr& data);
+	static Map_singleton *CreateMap(void); # \<2>
+	void SetData(const nav_msgs::OccupancyGrid::ConstPtr& data); # \<3>
 	/*void mapCallBack(const nav_msgs::OccupancyGrid::ConstPtr& msg)
 	{
 		mapData = *msg;
 	}*/
 };
 
-Map_singleton *Map_singleton::CreateMap()
+Map_singleton *Map_singleton::CreateMap() # \<4>
 {
 	if (map == nullptr)
 	{
