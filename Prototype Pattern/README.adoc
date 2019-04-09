@@ -19,3 +19,6 @@ Prototype tasarım deseninde 3 nesne yapısı vardır.
 * Client: Klonlanmış nesneyi elde edecek nesne.
 
 
+
+
+
