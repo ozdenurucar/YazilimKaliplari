@@ -1,0 +1,21 @@
+==== Prototype Pattern
+
+Prototype (prototip) tasarım deseni creational grubununa ait, var olan nesnelerin kopyasının üretiminden sorumlu tasarım desenidir. 
+
+Bazı nesnelerin üretilme maliyeti oldukça yüksek olabilir veya aynı değerlerde nesne üretilmesi gereken durumlar olabilir. Böyle nesnelerin üretim maliyetini azaltmak için var olan nesnenin kopyasının üretilmesi yoluna gidilebilir. Prototype tasarım deseni böyle durumdaki nesnelerin yönetilmesini sağlar.
+
+İki farklı kopyalama şekli:
+
+----
+* Deep Copy (Derin Kopyalama)
+* Shallow Copy (Yüzeysel Kopyalama)
+----
+
+
+Prototype tasarım deseninde 3 nesne yapısı vardır.
+
+* Prototype: Klonlama yapılacak sınıfların uygulaması gereken interface veya abstract sınıf.
+* Concrete Prototype: Klonlama özelliği olacak gerçek sınıflar.
+* Client: Klonlanmış nesneyi elde edecek nesne.
+
+
