@@ -18,6 +18,7 @@ Prototype tasarım deseninde 3 nesne yapısı vardır.
 * Concrete Prototype: Klonlama özelliği olacak gerçek sınıflar.
 * Client: Klonlanmış nesneyi elde edecek nesne.
 
+Random rapidly tree(RRT)  kullanarak yapılacak olan yol planlaması projesinde prototype pattern haritaya nesne ekleme ve çıkarma( offline olarak) işlemlerinde kulalnılmıştır.
 
 
 
