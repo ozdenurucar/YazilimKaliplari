@@ -104,68 +104,7 @@ namespace turtlebot_rrt
 		bool IsSafe(std::pair<float, float> start_point,
 			std::pair<float, float> end_point);
 		std::vector<pair<float, float>> obstacles;
-	private:
-		ros::NodeHandle node_handle_;
-		costmap_2d::Costmap2DROS* costmap_ros_; //Kontrolörün kullanacağı maliyet haritası için ROS wrapper
-		costmap_2d::Costmap2D* costmap_;
-		int max_iterations_;
-		int current_iterations_;
-		base_local_planner::WorldModel* world_model_; //Maliyet haritasıyla ilişkili dünya modeli
-		bool initialized_;
-		float goal_radius_;
-		float step_size_;
-		float delta_;
-		float x_origin_;
-		float y_origin_;
-		float x_goal_;
-		float y_goal_;
-		unsigned int map_width_cells_;
-		unsigned int map_height_cells_;
-		std::vector<turtlebot_rrt::Vertex> vertex_list_;
 	};
-	void RRTPlanner::initialize(std::string name, costmap_2d::Costmap2DROS* costmap_ros) 
-	{
-		if (!initialized_) 
-		{
-			//haritayi baslat
-			costmap_ros_ = costmap_ros;
-			costmap_ = costmap_ros->getCostmap();
-
-			// ros dugumunu baslat
-			ros::NodeHandle node("~/turtlebot_rrt");
-			node_handle_ = node;
-			world_model_ = new base_local_planner::CostmapModel(*costmap_);
-			node_handle_.getParam("/move_base/step_size_", step_size_);
-			node_handle_.getParam("/move_base/delta_", delta_);
-			node_handle_.getParam("/move_base/goal_radius_", goal_radius_);
-			node_handle_.getParam("/move_base/max_iterations_", max_iterations_);
-			ROS_INFO("Step size: %.2f, goal radius: %.2f, delta: %.2f, max "
-				"iterations: %d", step_size_, goal_radius_, delta_,
-				max_iterations_);
-			current_iterations_ = 0;
-
-			// costmapdeki engelleri getir
-			map_width_cells_ = costmap_->getSizeInCellsX();
-			map_height_cells_ = costmap_->getSizeInCellsY();
-
-			for (unsigned int iy = 0; iy < map_height_cells_; iy++) {
-				for (unsigned int ix = 0; ix < map_width_cells_; ix++) {
-					unsigned char cost = static_cast<int>(costmap_->getCost(ix, iy));
-					if (cost >= 115)
-						obstacle_map_.push_back(false);
-					else
-						obstacle_map_.push_back(true);
-				}
-			}
-			// Basladigini goster
-			ROS_INFO("RRT planner initialized successfully.");
-			initialized_ = true;
-		}
-		else 
-		{
-			ROS_WARN("RRT planner has already been initialized.");
-		}
-	}
 	//Prototype pattern icin:
 	int main()
 	{
