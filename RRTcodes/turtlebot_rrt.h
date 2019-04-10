@@ -36,15 +36,18 @@ namespace turtlebot_rrt {
 		void initialize(std::string name, costmap_2d::Costmap2DROS* costmap_ros);
 		bool makePlan(const geometry_msgs::PoseStamped& start, const geometry_msgs::PoseStamped& goal, 
 			std::vector<geometry_msgs::PoseStamped>& plan);
-		std::vector<bool> getObstacleMap() {
+		std::vector<bool> getObstacleMap() 
+		{
 			return obstacle_map_;
 		}
-		std::vector<turtlebot_rrt::Vertex> getVertexTree() {
+		std::vector<turtlebot_rrt::Vertex> getVertexTree() 
+		{
 			return vertex_list_;
 		}
 		std::pair<float, float> GetRandomPoint();
 		int GetClosestVertex(std::pair<float, float> random_point);
-		void addVertex(turtlebot_rrt::Vertex new_vertex) {
+		void addVertex(turtlebot_rrt::Vertex new_vertex)
+		{
 			vertex_list_.push_back(new_vertex);
 		}
 		float GetDistance(std::pair<float, float> start_point,
@@ -60,7 +63,6 @@ namespace turtlebot_rrt {
 			const geometry_msgs::PoseStamped& goal);
 		bool IsSafe(std::pair<float, float> start_point,
 			std::pair<float, float> end_point);
-
 	private:
 		ros::NodeHandle node_handle_;
 		std::vector<bool> obstacle_map_;
