@@ -1,0 +1,7 @@
+@startuml
+Contractor o-- RobotBuilder
+RobotBuilder <|-- RobotBurgerWithFC
+RobotBuilder <|-- RobotWaffleWithoutFC
+RobotBurgerWithFC ..> Robot: <<create>>
+RobotWaffleWithoutFC ..> Robot: <<create>>
+@enduml
