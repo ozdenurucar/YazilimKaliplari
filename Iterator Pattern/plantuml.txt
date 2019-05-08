@@ -1,0 +1,55 @@
+@startuml
+
+class Iterator {
+ +bool next() : 
+ +void* getItem()
+ +void loadMap()
+}
+class Iterable {
+ +virtual Iterator* getIterator()
+}
+class Object {
+ -string name
+ +Object(string name)
+ +string toString()
+}
+class StaticEnvironment {
+ -Object **objects
+ +StaticEnvironment()
+ +Object** GetObjects()
+ +Iterator* getIterator()
+}
+class DinamicEnvironment {
+ -vector<Object*> objects
+ +DinamicEnvironment()
+ +vector<Object*> GetObjects()
+ +Iterator* getIterator()
+}
+class StaticEIterator {
+ -StaticEnvironment *staticE
+ -int index
+ +StaticEIterator()
+ +void* getItem()
+ +bool next()
+ +void loadMap()
+}
+class DinamicEIterator {
+ -StaticEnvironment *dinamicE
+ -int index
+ +DinamicEIterator()
+ +void* getItem()
+ +bool next()
+ +void loadMap()
+}
+
+Iterable <|-- StaticEnvironment
+Iterable <|-- DinamicEnvironment
+
+StaticEnvironment o-- Object
+DinamicEnvironment o-- Object
+
+Iterator <|-- StaticEIterator
+Iterator <|-- DinamicEIterator
+Iterable ..> Iterator
+
+@enduml
