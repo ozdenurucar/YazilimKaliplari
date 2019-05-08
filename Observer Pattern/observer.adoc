@@ -1,0 +1,42 @@
+==== Observer Pattern
+
+Random Rapidly Tree kullanılarak yapılacak olan yol planlama işleminde, observer pattern hedefe ulaşılıp ulaşılmadığında haber verme sistemi üzerinde kullanılacaktır.
+
+[source,C++]
+----
+#include <vector>
+#include <functional>
+
+
+class rrtplanner_observer
+{
+  public:
+    virtual bool ReachedGoal(int new_vertex) = 0;
+};
+
+class observer_concrete : public rrtplanner_observer
+{
+  public:
+    virtual void notify() override
+    { 
+     ROS_DEBUG("Hedefe ulasildi, vertex index: %d.", new_vertex);
+    }
+};
+class map_subject
+{
+  public:
+    void register_observer(rrtplanner_observer& o)
+    {
+      observers.push_back(o);
+    }
+    void notify_observers()
+    {
+      for (rrtplanner_observer& o : observers)
+      {
+        o.ReachedGoal();
+      }
+    }
+  private:
+    std::vector<std::reference_wrapper<rrtplanner_observer>> observers;
+};
+----
