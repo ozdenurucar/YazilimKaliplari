@@ -1,0 +1,848 @@
+== Tüm Tasarım Örüntülerinin Tek Bir Projede Birleştirilmesi
+Random Rapidly Tree projessinde kullanılan tüm tasarım örüntülerinin:
+
+* Tasarım örüntüsü açıklamaları
+* Projede hangi amaçla kullanıldığı
+* Projenin neresinde kullanıldığı
+
+ayrıntılarıyla açıklanmıştır.
+
+.Not
+[NOTE]
+====
+Her tasarım örüntüsünün kendisine özgü kısımların teker teker açıklaması için klasörlerde yer alan ReadMe.adoc dosyalarına bakınız.
+====
+
+=== Singleton Pattern
+
+Singleton pattern veritabanı bağlantılarında, port bağlantılarında, yada dosya işlemleri gibi tek bir nesneye ihtiyaç duyduğumuz zamanlarda kullanırız.
+
+Random Rapidly Tree kullanarak yapılacak yol planlama projesinde singleton pattern kullanımı harita üzerindeki işlemlerde gösterilmiştir.
+
+
+Projenin aslında singleton pattern zorunluluğu yoktur.
+
+=== Factory Pattern
+
+Genel hatlarıyla factory tasarım kalıbı oluşturulan bir interface sınıftan veya abstract sınıftan türetilen başka bir sınıf oluşturma işlemidir. Aynı özelliği kullanmak isteyen sınıflar tarafından kullanılır.
+
+Random Rapidly Tree kullanarak yapılacak yol planlama projesinde factory pattern kullanımı sesli bildirim için kullanılmıştır.
+
+=== Prototype Pattern
+
+Prototype (prototip) tasarım deseni creational grubununa ait, var olan nesnelerin kopyasının üretiminden sorumlu tasarım desenidir. 
+
+Bazı nesnelerin üretilme maliyeti oldukça yüksek olabilir veya aynı değerlerde nesne üretilmesi gereken durumlar olabilir. Böyle nesnelerin üretim maliyetini azaltmak için var olan nesnenin kopyasının üretilmesi yoluna gidilebilir. Prototype tasarım deseni böyle durumdaki nesnelerin yönetilmesini sağlar.
+
+İki farklı kopyalama şekli:
+
+----
+* Deep Copy (Derin Kopyalama)
+* Shallow Copy (Yüzeysel Kopyalama)
+----
+
+
+Prototype tasarım deseninde 3 nesne yapısı vardır.
+
+* Prototype: Klonlama yapılacak sınıfların uygulaması gereken interface veya abstract sınıf.
+* Concrete Prototype: Klonlama özelliği olacak gerçek sınıflar.
+* Client: Klonlanmış nesneyi elde edecek nesne.
+
+Random rapidly tree(RRT)  kullanarak yapılacak olan yol planlaması projesinde prototype pattern haritaya sonradan nesne ekleme ( offline olarak) işlemlerinde kulalnılmıştır.
+
+=== Object Pooling Pattern
+
+Object pool,  dağıtık sistemlerde veya yazılım geliştirici tarafından yönetilmesi zor olan nesnelerde  kullanılabilecek bir tasarım desenidir. Belli sayıda üretilen objeler bir havuzda toplanır ve ihtiyaç olduğunda buradan toplanır.
+
+=== Havuz obje sayısı yetersizse
+* Bekleme listesi yazılabilir ve her obje geri salımında kontrol sağlanabilir.
+ 
+Random Rapidly Tree kullanarak yapılacak yol planlama projesinde object pooling kalıbı dünyaya sonradan eklenecek engeller için kullanılmıştır. Engeller önceden oluşturulan bir havuzda tutulur ve istendiğinde hemen çekilir böylece oluşturma süresinden tasarruf edilir.
+
+Projenin object pooling pattern zorunluluğu yoktur.
+
+=== Builder Pattern
+
+Builder tasarım örüntüsünün temel hedefi, karmaşık bir nesneyi adım adım inşa etmektir. Builder tasarım örüntüsü genişletilebilirliği sağlamak ve kod karmaşıklığını engellemek için kullanılır. 
+
+Projede builder tasarım örüntüsünün amacı robotun sensörlerine hakim olabilmektir. Ön kameraya sahip olan robotlar ile çarpışma kontrolü yapılabilmektedir. Çünkü robot, sadece robotun üstünde olan kamera ile bazı kör noktalara sahip olabilmektedir. Bu kör noktalar ise çarpışmaya sebebiyet verebilmektedir. Böylece robotun kamera ayarlarına göre kod ayarlanabilmektedir. Projenin builder pattern kullanım zorunluluğu yoktur.
+
+=== Abstract Factory Pattern
+
+Random Rapidly Tree kullanılarak yapılacak olan yol planlama projesinde,
+ROS kullanılarak robot ve yol planlama(yazılım tarafı) ile ileitişim kurulabilmektedir.Esasen ROS kendi publish/subscribe yapısında abstract dizaynı kullanmaktadır. 
+
+Abstract factory patterni örneklemek üzere proje için örnek olabilecek senaryo mobil robot üzerinde ki sensörlerdir. Mesafe sensörleri, ışık/renk sensörleri gibi. Bu sensörlerin program üzerinde kullanım şekilleri aynıdır. 
+
+
+=== Iterator Pattern
+
+Iterator (tekrarlayıcı) tasarım deseni, davranışsal grubununa ait, nesne koleksyonlarının (list,array,queue) elemanlarını belirlenen kurallara göre elde edilmesini düzenleyen tasarım desenidir. Iterator tasarım deseni ile koleksiyon yapısı bilinmesine ihtiyaç olmadan koleksiyon elemanları üzerinde işlem yapılabilmesini sağlar. 
+ 
+Random Rapidly Tree kullanarak yapılacak yol planlama projesinde iterator kalıbı ile haritaya nesne eklemesi ve o nesnelerin okunması sağlanacaktır.
+
+Projenin iterator pattern zorunluluğu yoktur.
+
+=== Observer Pattern
+
+Random Rapidly Tree kullanılarak yapılacak olan yol planlama işleminde, observer pattern hedefe ulaşılıp ulaşılmadığında haber verme sistemi üzerinde kullanılacaktır.
+
+
+=== Memento Pattern
+
+Memento Design Pattern, mevcut nesnenin herhangi bir T anındaki durumunu kayda alarak, sonradan oluşabilecek değişiklikler üzerine tekrardan o kaydın elde etdilmesini sağlayan bir desendir.  
+ 
+Random Rapidly Tree kullanarak yapılacak yol planlama projesinde memnto kalıbı ile daha önce eğitilmiş ve parametrelerin oluşturulması sağlanmışsa geri getirilmesi sağlanacaktır.
+
+Projenin memento pattern zorunluluğu yoktur.
+
+=== Decorator Pattern
+
+Decoractor tasarım deseni; yapıya yeni metot eklenmesini yapının arayüzünü uygulayan bir decorator nesnesi tanımlanarak yapar. İçinde uyguladığı arayüz
+tipinde bir referans barındırır ve kendisine verilen bu nesne üzerinde yeni eklenecek olan metotları barındırır. Kullanımı oldukça basittir.
+  
+ 
+Random Rapidly Tree kullanarak yapılacak yol planlama projesinde decoractor kalıbı ile kullanılacak olan robotun sensör eklemeleri yapılacaktır.
+
+Projenin decorator pattern zorunluluğu yoktur.
+
+
+.YazilimTasarimKaliplari.cpp
+[source,c++]
+----
+#include "pch.h"
+//#include "ros/ros.h"
+//#include "std_msgs/String.h"
+#include <sstream>
+#include <iostream>
+#include <string>
+#include <vector>
+#include "ObjectPooling.h"
+
+//#include "nav_msgs/OccupancyGrid.h"
+//#include "geometry_msgs/PointStamped.h"
+//#include "std_msgs/Header.h"
+//#include "nav_msgs/MapMetaData.h"
+//#include "geometry_msgs/Point.h"
+
+//-----------------------FACTORY PATTERN-----------------------// <1>
+class Notification
+{
+public:
+	Notification() {}
+	virtual void Alarm() {}
+};
+
+class BatteryAlert : public Notification
+{
+	//Batarya alarminin frekansi dusuk olacak
+public:
+	void Alarm()
+	{
+		std::cout << "\nBatarya Bitmesi Alarmi!" << std::endl;
+	}
+};
+class CollisionAlert : public Notification
+{
+	//Carpisma alarminin frekansi yuksek olacak
+public:
+	CollisionAlert() {}
+	void Alarm()
+	{
+		std::cout << "Çarpisma Alarmi!" << std::endl;
+	}
+};
+
+//-----------------------ITERATOR PATTERN-----------------------// <2>
+class Iterator {
+public:
+	virtual bool next() = 0;
+	virtual void* getItem() = 0;
+	virtual void loadMap() = 0;
+};
+
+class Iterable {
+public:
+	virtual Iterator* getIterator() = 0;
+};
+
+class Object {
+private:
+	std::string name;
+public:
+	Object(std::string name) {
+		this->name = name;
+	}
+	std::string toString() {
+		return this->name;
+	}
+};
+class StaticEnvironment : public Iterable {
+private:
+	Object **objects;
+public:
+	StaticEnvironment() {
+		objects = new Object*[3];
+		objects[0] = new Object("bookshelf");
+		objects[1] = new Object("chair");
+		objects[2] = new Object("desk");
+	}
+	Object** GetObjects() {
+		return objects;
+	}
+	Iterator* getIterator();
+};
+
+class DinamicEnvironment : public Iterable {
+private:
+	std::vector<Object*> objects;
+public:
+	DinamicEnvironment() {
+		objects = std::vector<Object*>();
+		objects.push_back(new Object("person"));
+		objects.push_back(new Object("dog"));
+		objects.push_back(new Object("cat"));
+	}
+
+	std::vector<Object*> GetObjects() {
+		return objects;
+	}
+	Iterator* getIterator();
+};
+
+class StaticEIterator : public Iterator {
+private:
+	StaticEnvironment *staticE;
+	int index;
+public:
+	StaticEIterator() {
+		staticE = new StaticEnvironment();
+	}
+	void* getItem() {
+		Object **c = &(staticE->GetObjects()[index]);
+		++index;
+		return *c;
+	}
+	bool next() {
+		if (index < 3) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
+	void loadMap() {
+		std::cout << "static map" << std::endl;
+	}
+
+};
+
+class DinamicEIterator : public Iterator {
+private:
+	DinamicEnvironment *dinamicE;
+	int index;
+public:
+	DinamicEIterator() {
+		dinamicE = new DinamicEnvironment();
+	}
+	void *getItem() {
+		Object *c = dinamicE->GetObjects()[index];
+		++index;
+		return c;
+	}
+	bool next() {
+		if (index < (int)dinamicE->GetObjects().size()) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
+	void loadMap() {
+		std::cout << "dinamic map" << std::endl;
+	}
+};
+
+Iterator* DinamicEnvironment::getIterator()
+{
+	return new DinamicEIterator();
+}
+
+Iterator* StaticEnvironment::getIterator()
+{
+	return new StaticEIterator();
+}
+
+//-----------------------MEMENTO PATTERN-----------------------// <3>
+class Memento
+{
+private:
+	int param;
+	friend class ParameterOriginator;
+	Memento(const int p) : param(p) {}
+	void setParam(const int p)
+	{
+		param = p;
+	}
+	int getParam()
+	{
+		return param;
+	}
+};
+
+
+class ParameterOriginator
+{
+private:
+	int param;
+public:
+	void setParam(const int p)
+	{
+		std::cout << "Parametreler " << p << " olarak ayarlandi." << std::endl;
+		param = p;
+	}
+	int getParam()
+	{
+		return param;
+	}
+	void setMemento(Memento* const p)
+	{
+		param = p->getParam();
+	}
+	Memento *createMemento()
+	{
+		return new Memento(param);
+	}
+};
+
+class CareTaker
+{
+private:
+	ParameterOriginator *originator;
+	std::vector<Memento*> history;
+public:
+	CareTaker(ParameterOriginator* const o) : originator(o) {}
+	void save()
+	{
+		std::cout << "Parametreler gecmiste kaydedilmisti." << std::endl;
+		history.push_back(originator->createMemento());
+	}
+	void loadOldParam()
+	{
+		if (history.empty())
+		{
+			std::cout << "Yuklenemiyor." << std::endl;
+			return;
+		}
+		Memento *m = history.back();
+		originator->setMemento(m);
+		std::cout << "Eski parametrele yuklendi." << std::endl;
+		history.pop_back();
+		delete m;
+	}
+};
+
+//-----------------------DECORATOR PATTERN-----------------------// <4>
+class Robot
+{
+public:
+	virtual void Add() = 0;
+	virtual ~Robot()
+	{
+		std::cout << "delete Robot";
+	}
+};
+
+class TurtleBot : public Robot
+{
+public:
+	virtual void Add()
+	{
+		std::cout << "\n TurtleBot";
+	}
+};
+
+class RobotDecorator : public Robot
+{
+public:
+	RobotDecorator(Robot& decorator) :m_Decorator(decorator) {}
+	virtual void Make()
+	{
+		m_Decorator.Add();
+	}
+private:
+	Robot& m_Decorator;
+};
+
+class WithFrontCamera : public RobotDecorator
+{
+public:
+	WithFrontCamera(Robot& decorator) :RobotDecorator(decorator) {}
+	virtual void Add()
+	{
+		RobotDecorator::Make();
+		std::cout << " + FrontCamera";
+	}
+	virtual ~WithFrontCamera()
+	{
+		std::cout << "delete FrontCamera";
+	}
+};
+
+class WithFallDetection : public RobotDecorator
+{
+public:
+	WithFallDetection(Robot& decorator) :RobotDecorator(decorator) {}
+	virtual void Add()
+	{
+		RobotDecorator::Make();
+		std::cout << " + FallDetection";
+	}
+	virtual ~WithFallDetection()
+	{
+		std::cout << "delete FallDetection";
+	}
+};
+
+//-----------------------BUILDER PATTERN-----------------------// <5>
+// Donecek olan urun
+class Camera {
+private:
+	string CameraType, FrontCameraType, BackCameraType;
+public:
+	void setCameraType(string CameraType)
+	{
+		this->CameraType = CameraType;
+	}
+	void setFrontCameraType(string FrontCameraType)
+	{
+		this->FrontCameraType = FrontCameraType;
+	}
+	void setBackCameraType(string BackCameraType)
+	{
+		this->BackCameraType = BackCameraType;
+	}
+	string CameratoString()
+	{
+		string features = "Kamera Ozellikleri \n";
+		features += "Kamera Turu: ";
+		features += this->CameraType;
+		features += "\n";
+		features += "On Kamera Turu: ";
+		features += this->FrontCameraType;
+		features += "\n";
+		features += "Arka Kamera Turu: ";
+		features += this->BackCameraType;
+		features += "\n";
+		return features;
+	}
+};
+// Builder sinif
+class CameraBuilder
+{
+public:
+	/* Abstract functions to build parts */
+	virtual void buildBackCameraType() = 0;
+	virtual void buildCameraType() = 0;
+	virtual void buildFrontCameraType() = 0;
+	/* The product is returned by this function */
+	virtual Camera* getCamera() = 0;
+};
+
+// RobotBuilder arayuzunun Concrete sinifi
+class RobotBurgerWithFC :public CameraBuilder {
+private:
+	Camera *camera;
+public:
+	RobotBurgerWithFC()
+	{
+		camera = new Camera();
+	}
+	void buildCameraType()
+	{
+		camera->setCameraType("LIDAR");
+	}
+	void buildFrontCameraType()
+	{
+		camera->setFrontCameraType("NormalKamera");
+	}
+	void buildBackCameraType()
+	{
+		camera->setBackCameraType("None");
+	}
+	Camera* getCamera()
+	{
+		return this->camera;
+	}
+};
+
+// RobotBuilder arayuzunun baska bir Concrete sinifi
+class RobotWaffleWithoutFC :public CameraBuilder {
+private:
+	Camera *camera;
+public:
+	RobotWaffleWithoutFC()
+	{
+		camera = new Camera();
+	}
+
+	void buildBackCameraType()
+	{
+		camera->setBackCameraType("None");
+	}
+
+	void buildCameraType()
+	{
+		camera->setCameraType("LIDAR");
+	}
+
+	void buildFrontCameraType()
+	{
+		camera->setFrontCameraType("None");
+	}
+
+	Camera* getCamera()
+	{
+		return this->camera;
+	}
+};
+
+/* Director veya Client denebilir. Kamerayi insa eder */
+class Contractor
+{
+private:
+	CameraBuilder *cameraBuilder;
+
+public:
+	Contractor(CameraBuilder *robotBuilder)
+	{
+		this->cameraBuilder = robotBuilder;
+	}
+
+	Camera *getCamera()
+	{
+		return cameraBuilder->getCamera();
+	}
+
+	void buildCamera()
+	{
+		cameraBuilder->buildBackCameraType();
+		cameraBuilder->buildCameraType();
+		cameraBuilder->buildFrontCameraType();
+	}
+};
+
+//-----------------------OBJECT POOLING PATTERN-----------------------// <6>
+//Ayri siniflarda islemler yapilmistir
+
+int main()
+{
+	//----------------------------------------------------------------------Memento Pattern icin
+	std::cout << "Eski parametrelerin yuklenmesi icin MEMENTO PATTERN\n";
+	ParameterOriginator *param = new ParameterOriginator();
+	CareTaker *caretaker = new CareTaker(param);
+
+	// Parametreler gecmiste calistiginda 1 idi.
+	param->setParam(1);
+	caretaker->save();
+
+	// Parametrelerin şuan 2 olarak default olarak atandigi dusunulsun
+	param->setParam(2);
+	
+	// Gecmiste program calismis da parametrelere 1 atanmis ve dosyaya kaydedilmis olarak dusunulsun
+	bool file = true; 
+	if (file)
+		caretaker->loadOldParam();
+
+	std::cout << "Parametreler suan " << param->getParam() << "." << std::endl;
+
+	//----------------------------------------------------------------------Decorator Pattern icin
+	std::cout << "Robot sensor eklemesi yapilirsa diye DECORATOR PATTERN";
+	Robot* pTurtleBot = new TurtleBot();
+	pTurtleBot->Add();
+
+	Robot* pTurtleBotWithFrontCamera = new WithFrontCamera(*pTurtleBot);
+	pTurtleBotWithFrontCamera->Add();
+
+	Robot* pTurtleBotWithFrontCameraAndFallDetection = new WithFallDetection(*pTurtleBotWithFrontCamera);
+	pTurtleBotWithFrontCameraAndFallDetection->Add();
+	//----------------------------------------------------------------------Builder Pattern icin
+	std::cout << "\nKamera ayarlamasi icin BUILDER PATTERN\n";
+	CameraBuilder *burgerwithfrontcamera = new RobotBurgerWithFC();
+	CameraBuilder *wafflewithfrontcamera = new RobotWaffleWithoutFC();
+
+	Contractor *ctr1 = new Contractor(burgerwithfrontcamera);
+	Contractor *ctr2 = new Contractor(wafflewithfrontcamera);
+
+	ctr1->buildCamera();
+	Camera *r1 = ctr1->getCamera();
+
+	cout << "Kamera 1 : \n";
+	cout << "Olusturulan: " << r1 << "\n";
+	cout << r1->CameratoString();
+
+	ctr2->buildCamera();
+	Camera *r2 = ctr2->getCamera();
+	cout << "Kamera 2 : \n";
+	cout << "Olusturulan: " << r2 << "\n";
+	cout << r2->CameratoString();
+
+	//----------------------------------------------------------------------Iterator Pattern icin
+	std::cout << "\nHaritaya nesne eklenmesi ve o nesnelerin okunmasi icin ITERATOR PATTERN\n";
+	DinamicEnvironment *de = new DinamicEnvironment();
+	Iterator *itr = de->getIterator();
+	itr->loadMap();
+	while (itr->next()) {
+		Object *t = (Object*)itr->getItem();
+		std::cout << t->toString() << std::endl;
+	}
+	StaticEnvironment *se = new StaticEnvironment();
+	itr = se->getIterator();
+	itr->loadMap();
+	while (itr->next()) {
+		Object *t = (Object*)itr->getItem();
+		std::cout << t->toString() << std::endl;
+	}
+	//----------------------------------------------------------------------Object Pooling Pattern icin
+	std::cout << "\nDunyaya sonradan eklenecek engeller icin  OBJECT POOLING PATTERN\n";
+	Obstacle *cnn = new Obstacle("k1");
+	cnn->Open();
+	cnn->Execute("obs1 ");
+	cnn->Close();
+	cout << "----------------------" << endl;
+	Obstacle *cnn2 = new Obstacle("k1");
+	cnn2->Open();
+	cnn2->Execute("obs2 ");
+	cnn2->Close();
+	cout << "----------------------" << endl;
+	Obstacle *cnn3 = new Obstacle("k1");
+	cnn3->Open();
+	cnn3->Execute("obs3 ");
+	cnn3->Close();
+	cout << "----------------------" << endl;
+
+	//----------------------------------------------------------------------Factory Pattern icin 
+	std::cout << "\nRobot calisirken uyarilar icin ses biildirimi (ture gore frekansli) icin  FACTORY PATTERN\n";
+	bool collision = true;
+	if (collision) {
+		Notification *pcollision = new CollisionAlert();
+		pcollision->Alarm();
+	}
+	bool batteryLow = true;
+	if (batteryLow) {
+		Notification *pbatteryLow = new BatteryAlert();
+		pbatteryLow->Alarm();
+	}
+
+
+
+
+}
+----
+<1> Factory Pattern
+<2> Iterator Pattern
+<3> Memenot Pattern
+<4> Decorator Pattern
+<5> Builder Pattern
+<6> Object Pooling Pattern
+
+
+
+.ObjectPooling.h
+[source,c++]
+----
+#pragma once
+#include "pch.h"
+#include <string>
+#include <unordered_map>
+#include <vector>
+#include <iostream>
+#include "vectorhelper.h"
+
+using namespace std;
+ <1>
+class ObstacleContext {
+private:
+	bool is_Active;
+	//Nesnenin kullanili kullanilmadiği bilgisini tutar
+public:
+	const bool &getisActive() const;
+	void setisActive(const bool &value);
+	ObstacleContext();
+	void Open();
+	void Close();
+	void Execute(const string &query);
+};
+class PoolManager;
+class Obstacle {
+private:
+	string ObstacleString;
+	PoolManager *poolManager;
+	ObstacleContext *con;
+
+public:
+	const string &getObstacleString() const;
+	void setObstacleString(const string &value);
+	Obstacle(const string &ObstacleString);
+	void Open();
+	void Close();
+	void Execute(const string &query);
+};
+class PoolManager {
+private:
+	static const int POOL_SİZE = 5;
+	unordered_map<string, vector<ObstacleContext*>> pools;
+protected:
+	static PoolManager *pm;
+	PoolManager();
+public:
+	static PoolManager *createPool();
+	ObstacleContext *TakeObstacle(const string &key);
+	void ReleaseObstacle(ObstacleContext *Obstacle);
+
+};
+
+----
+ <1> Object Pooling Pattern header dosyası
+ 
+ 
+.ObjectPooling.cpp
+[source,c++]
+----
+#include "pch.h"
+#include "ObjectPooling.h"
+<1>
+
+const bool &ObstacleContext::getisActive() const {
+	return is_Active;
+}
+
+void ObstacleContext::setisActive(const bool &value) {
+	is_Active = value;
+}
+
+ObstacleContext::ObstacleContext() {
+	is_Active = false;
+	std::cout << "ObstacleContext yaratildi" << endl;
+}
+
+void ObstacleContext::Open() {
+	std::cout << "Obstacle kullanima acildi" << endl;
+	//Burada obstacle kullanima acilacak
+	//Obstacle ın koordinatları random verilebilir veya kullanicidan alinabilir
+}
+
+void ObstacleContext::Close() {
+	std::cout << "Obstacle kullanima  kapandi" << endl;
+	//Burada obstacle kullanimi bitecek
+}
+
+void ObstacleContext::Execute(const string &query) {
+	std::cout << query << "Obstacle kullanimda" << endl;
+}
+
+//-------------------------------------------------
+
+const string &Obstacle::getObstacleString() const {
+	return ObstacleString;
+}
+
+void Obstacle::setObstacleString(const string &value) {
+	ObstacleString = value;
+}
+
+Obstacle::Obstacle(const string &ObstacleString) {
+	this->ObstacleString = ObstacleString;
+}
+
+void Obstacle::Open() {
+	poolManager = PoolManager::createPool();
+	con = poolManager->TakeObstacle(this->ObstacleString);
+
+	if (con != nullptr) {
+		con->Open();
+	}
+	else {
+		cout << "Havuzda hic uygun nesne yok. Bekle" << endl;
+		//Bekleyen obstacle'lar bir listede tutulacak
+	}
+}
+
+void Obstacle::Close() {
+	poolManager->ReleaseObstacle(con);
+	con->Close();
+	//Bekleyen obstacle listesi kontrol edilecek. Eğer bekleyen varsa onun acilme islemlerine yönlendirme yapilacak
+}
+
+void Obstacle::Execute(const string &query) {
+	con->Execute(query);
+}
+
+//-------------------------------------------------
+
+PoolManager::PoolManager() {
+	pools = unordered_map<string, vector<ObstacleContext*>>(POOL_SİZE);
+}
+
+PoolManager* PoolManager::pm = nullptr;
+
+PoolManager *PoolManager::createPool() {
+	//PoolManager singleton
+	if (pm == nullptr) {
+		pm = new PoolManager();
+	}
+	return pm;
+}
+
+ObstacleContext *PoolManager::TakeObstacle(const string &key) {
+	if (pools.find(key) != pools.end()) {
+		vector<ObstacleContext*> objects = static_cast<vector<ObstacleContext*>>(pools[key]);
+		for (auto cu : objects) {
+			if (!cu->getisActive()) {
+				return cu;
+			}
+		}
+	}
+	else {
+		vector<ObstacleContext*> yeniHavuz = vectorhelper::VectorWithReservedSize<ObstacleContext*>(POOL_SİZE);
+		for (int i = 0; i <= POOL_SİZE - 1; i++) {
+			yeniHavuz.push_back(new ObstacleContext());
+		}
+		pools.insert(make_pair(key, yeniHavuz));
+		ObstacleContext *cu = yeniHavuz[0];
+		cu->setisActive(true);
+
+		return cu;
+	}
+	return nullptr;
+}
+
+void PoolManager::ReleaseObstacle(ObstacleContext *connection) {
+	connection->setisActive(false);
+}
+----
+<1> Object Pooling Pattern cpp dosyası
+
+
+.vectorhelper.h
+[source,c++]
+----
+#pragma once
+<1>
+#include "pch.h"
+#include <vector>
+using namespace std;
+
+class vectorhelper {
+
+public:
+	template<typename T>
+	static vector<T> VectorWithReservedSize(int size) {
+
+		vector<T> vector;
+		vector.reserve(size);
+		return vector;
+	}
+};
+----
+<1> Object Pooling Pattern için yardımcı vektör yardımcısı dosyası

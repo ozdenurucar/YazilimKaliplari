@@ -1,10 +1,8 @@
 #include <vector>
 #include <functional>
 
-
-namespace turtlebot_rrt 
+class RRTPlanner : public nav_core::BaseGlobalPlanner 
 {
-class RRTPlanner : public nav_core::BaseGlobalPlanner {
  public:
      RRTPlanner();
      RRTPlanner(std::string name, costmap_2d::Costmap2DROS* costmap_ros);
@@ -80,7 +78,7 @@ class RRTPlanner : public nav_core::BaseGlobalPlanner {
      std::vector<turtlebot_rrt::Vertex> vertex_list_;
 };
 
-class RRTPlanner : rrtplanner_observer
+class rrtplanner_observer
 {
   public:
     virtual bool ReachedGoal(int new_vertex) = 0;
@@ -94,8 +92,6 @@ class observer_concrete : public rrtplanner_observer
      ROS_DEBUG("In ReachedGoal, vertex index: %d.", new_vertex);
     }
 };
-
-
 
 class map_subject
 {
@@ -114,8 +110,5 @@ class map_subject
   private:
     std::vector<std::reference_wrapper<rrtplanner_observer>> observers;
 };
-
-} 
-
 
 

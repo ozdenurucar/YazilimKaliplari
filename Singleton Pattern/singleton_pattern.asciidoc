@@ -1,0 +1,40 @@
+Singleton pattern veritabanı bağlantılarında, port bağlantılarında, yada dosya işlemleri gibi tek bir nesneye ihtiyaç duyduğumuz zamanlarda kullanırız.
+
+Random Rapidly Tree kullanarak yapılacak yol planlama projesinde singleton pattern kullanımı harita üzerindeki işlemlerde gösterilmiştir.
+
+
+Projenin aslında singleton pattern zorunluluğu yoktur.
+
+[source,C++]
+----
+
+//Global Variables
+//nav_msgs::OccupancyGrid mapData;
+
+class Map_singleton
+{
+private:
+	static Map_singleton *map; <1>
+	nav_msgs::OccupancyGrid mapData; 
+public:
+	static Map_singleton *CreateMap(void); 
+	void SetData(const nav_msgs::OccupancyGrid::ConstPtr& data); 
+	/*void mapCallBack(const nav_msgs::OccupancyGrid::ConstPtr& msg)
+	{
+		mapData = *msg;
+	}*/
+};
+
+Map_singleton *Map_singleton::CreateMap() <2>
+{
+	if (map == nullptr)
+	{
+		map = new Map_singleton();
+	}
+	return map;
+}
+----
+
+
+<1> Map_Singleton isimli sınıftan map isminde bir (static) instance oluşturulmuştur.
+<2> Oluşturulan  (static) CreateMap isimli fonksiyonda singleton patterni uygulayabilmek için daha önce o instance ın üretilip üretilmediği kontrol edilmiştir.

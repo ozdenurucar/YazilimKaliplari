@@ -1,0 +1,41 @@
+=== Composite Pattern 
+
+Kullanıcı, her bir nesneyi, tek tek nesnelerin koleksiyonuyla aynı şekilde ele almak istediğinde kullanılır; örneğin, bir sayfa kopyadan temel olarak sayfaların bir koleksiyonu olan kopya ile aynı olarak düşünebilirsiniz. Eğer her şeyi nesne olarak düşünmek isteyebileceğiniz bir şeyin hiyerarşisini oluşturmak istiyorsanız kullanabilirsiniz.
+
+Programcılar aynı şekilde birden fazla nesne kullandıklarını ve her birini işlemek için genellikle aynı kodlara sahip olduklarını tespit ederse, Composite Patern iyi bir seçimdir.
+
+Composite Pattern uygulanırken:
+
+----
+1. Primitive sınıflar ve container sınıflar tanımlanır.
+2. Tüm somut sınıfları "değiştirilebilir" hale getirebilecek bir "arayüz" (en düşük ortak payda) oluşturulur
+3. Tüm somut sınıflar, arayüzle "is a" ilişkisini kurar.
+4. Tüm "konteyner" sınıfları kendilerini arayüze bağlar (özyinelemeli kompozisyon, Kompozit "is a" çocuk grubu "has a" hiyerarşidir ")
+5. "Container(Taşıyıcı)" sınıfları çocuklarına devredilen polimorfizm kullanır.
+----
+
+Composite Pattern'in 4 Bileşeni
+
+*Component:* Bileşen, bileşimdeki nesneler için ve alt bileşenlerine erişmek ve bunları yönetmek için arabirimi bildirir. Ayrıca uygun şekilde tüm sınıflar için ortak olan arabirim için varsayılan davranışı uygular.
+
+*Leaf:*  Birleşimdeki ilkel nesnelerin davranışını tanımlar. Kompozisyondaki leaf nesnelerini temsil eder.
+
+*Composite:* Kompozit, alt bileşenleri depolar ve bu bileşen ara yüzünde çocukla ilgili işlemleri gerçekleştirir.
+
+*Client:* İstemci, bileşimdeki nesneleri bileşen arayüzü üzerinden değiştirir.
+
+
+Rasgele Ağaç (RRT) global yol planlama uygulamasında Composite pattern, kullanılan Random Rapidly Tree yapısınn bir alternatifi olan Random Rapidly Composite Tree olarak değiştirilerek kullanılabilir. 
+
+
+
+
+
+
+
+
+
+
+
+
+

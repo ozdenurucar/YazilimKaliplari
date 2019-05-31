@@ -1,0 +1,28 @@
+@startuml
+
+class Robot{
+  +Add()
+}
+
+class TurtleBot{
+  +Add()
+}
+
+class RobotDecorator{
+  +Add()
+}
+
+class WithFrontCamera{
+  +Add()
+}
+
+class WithFallDetection{
+  +Add()
+}
+
+RobotDecorator <|-- WithFrontCamera
+RobotDecorator <|-- WithFallDetection 
+Robot <|.. RobotDecorator 
+Robot <|.. TurtleBot
+Robot --o RobotDecorator
+@enduml

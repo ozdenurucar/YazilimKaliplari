@@ -1,0 +1,198 @@
+﻿== Object Pooling Pattern
+
+Object pool,  dağıtık sistemlerde veya yazılım geliştirici tarafından yönetilmesi zor olan nesnelerde  kullanılabilecek bir tasarım desenidir. Belli sayıda üretilen objeler bir havuzda toplanır ve ihtiyaç olduğunda buradan toplanır.
+
+=== Havuz obje sayısı yetersizse
+* Bekleme listesi yazılabilir ve her obje geri salımında kontrol sağlanabilir.
+ 
+Random Rapidly Tree kullanarak yapılacak yol planlama projesinde object pooling kalıbı dünyaya sonradan eklenecek engeller için kullanılmıştır. Engeller önceden oluşturulan bir havuzda tutulur ve istendiğinde hemen çekilir böylece oluşturma süresinden tasarruf edilir.
+
+Projenin object pooling pattern zorunluluğu yoktur.
+
+.program.h
+[source,c++]
+----
+
+class ObstacleContext {
+private:
+	bool is_Active;
+	//Nesnenin kullanili kullanilmadiği bilgisini tutar
+public:
+	const bool &getisActive() const;
+	void setisActive(const bool &value);
+	ObstacleContext();
+	void Open();
+	void Close();
+	void Execute(const string &query);
+};
+class PoolManager;
+class Obstacle {
+private:
+	string ObstacleString;
+	PoolManager *poolManager;
+	ObstacleContext *con;
+
+public:
+	const string &getObstacleString() const;
+	void setObstacleString(const string &value);
+	Obstacle(const string &ObstacleString);
+	void Open();
+	void Close();
+	void Execute(const string &query);
+};
+class PoolManager {
+private:
+	static const int POOL_SİZE = 5; <1>
+	unordered_map<string, vector<ObstacleContext*>> pools;
+protected:
+	static PoolManager *pm;
+	PoolManager();
+public:
+	static PoolManager *createPool();
+	ObstacleContext *TakeObstacle(const string &key);
+	void ReleaseObstacle(ObstacleContext *Obstacle);
+
+};
+----
+<1> Havuzda bulunabilecek max obje sayısı 5 olarak belirlenmiş.
+
+.program.cpp
+[source,c++]
+----
+
+const bool &ObstacleContext::getisActive() const {
+	return is_Active;
+}
+
+void ObstacleContext::setisActive(const bool &value) {
+	is_Active = value;
+}
+
+ObstacleContext::ObstacleContext() {
+	is_Active = false;
+	std::cout << "ObstacleContext yaratildi" << endl;
+}
+
+void ObstacleContext::Open() {  <1>
+	std::cout << "Obstacle kullanima acildi" << endl;
+	//Burada obstacle kullanima acilacak
+	//Obstacle ın koordinatları random verilebilir veya kullanicidan alinabilir
+}
+
+void ObstacleContext::Close() {  <2>
+	std::cout << "Obstacle kullanima  kapandi" << endl;
+	//Burada obstacle kullanimi bitecek
+}
+
+void ObstacleContext::Execute(const string &query) {
+	std::cout << query << "Obstacle kullanimda" << endl;
+}
+
+
+const string &Obstacle::getObstacleString() const {
+	return ObstacleString;
+}
+
+void Obstacle::setObstacleString(const string &value) {
+	ObstacleString = value;
+}
+
+Obstacle::Obstacle(const string &ObstacleString) {
+	this->ObstacleString = ObstacleString;
+}
+
+void Obstacle::Open() {
+	poolManager = PoolManager::createPool();
+	con = poolManager->TakeObstacle(this->ObstacleString);
+
+	if (con != nullptr) {
+		con->Open();
+	}
+	else {
+		cout << "Havuzda hic uygun nesne yok. Bekle" << endl;
+		//Bekleyen obstacle'lar bir listede tutulacak
+	}
+}
+
+void Obstacle::Close() { <3>
+	poolManager->ReleaseObstacle(con);
+	con->Close();
+	//Bekleyen obstacle listesi kontrol edilecek. Eğer bekleyen varsa onun acilme islemlerine yönlendirme yapilacak
+}
+
+void Obstacle::Execute(const string &query) {
+	con->Execute(query);
+}
+
+PoolManager::PoolManager() {
+	pools = unordered_map<string, vector<ObstacleContext*>>(POOL_SİZE);
+}
+
+PoolManager* PoolManager::pm = nullptr;
+
+PoolManager *PoolManager::createPool() {
+	//PoolManager singleton  <4>
+	if (pm == nullptr) {
+		pm = new PoolManager();
+	}
+	return pm;
+}
+
+ObstacleContext *PoolManager::TakeObstacle(const string &key) {
+	if (pools.find(key) != pools.end()) {
+		vector<ObstacleContext*> objects = static_cast<vector<ObstacleContext*>>(pools[key]);
+		for (auto cu : objects) {
+			if (!cu->getisActive()) {
+				return cu;
+			}
+		}
+	}
+	else {
+		vector<ObstacleContext*> yeniHavuz = vectorhelper::VectorWithReservedSize<ObstacleContext*>(POOL_SİZE);
+		for (int i = 0; i <= POOL_SİZE - 1; i++) {
+			yeniHavuz.push_back(new ObstacleContext());
+		}
+		pools.insert(make_pair(key, yeniHavuz));
+		ObstacleContext *cu = yeniHavuz[0];
+		cu->setisActive(true);
+
+		return cu;
+	}
+	return nullptr;
+}
+
+void PoolManager::ReleaseObstacle(ObstacleContext *connection) {
+	connection->setisActive(false);
+}
+
+----
+<1> Kullanıma açılan obje ile engelin koordinatları belirlenip kullanılacak.
+<2> Objenin kullanımı bitecek.
+<3> Havuzda kapasiteden fazla engel istenirse kullanılacak listeleme yönteminden obje çekme.
+<4> Object Pool singleton zorunluluğunun gerçeklenmesi.
+
+ObjectPoolingExample.cpp
+[source,c++]
+----
+int main()
+{
+	Obstacle *cnn = new Obstacle("k1");
+	cnn->Open();
+	cnn->Execute("obs1 ");
+	cnn->Close();
+	cout << "----------------------" << endl;
+	Obstacle *cnn2 = new Obstacle("k1");
+	cnn2->Open();
+	cnn2->Execute("obs2 ");
+	cnn2->Close();
+	cout << "----------------------" << endl;
+	Obstacle *cnn3 = new Obstacle("k1");
+	cnn3->Open();
+	cnn3->Execute("obs3 ");
+	cnn3->Close();
+	cout << "----------------------" << endl;
+
+	getchar();
+    return 0;
+}
+----

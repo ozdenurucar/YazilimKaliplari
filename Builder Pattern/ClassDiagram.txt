@@ -1,4 +1,46 @@
 @startuml
+class Robot{
+  -String RobotType
+  -String CameraType
+  -String FrontCameraType
+  +void setRobotType()
+  +void setCameraType()
+  +void setFrontCameraType()
+  +string RobottoString()
+}
+
+class RobotBuilder{
+  +void buildRobotType()
+  +void buildCameraType()
+  +void builFrontCameraType()
+  +Robot* getRobot()
+}
+
+class RobotBurgerWithFC{
+  -Robot *robot
+  +RobotBurgerWithFC()
+  +void buildRobotType()
+  +void buildCameraType()
+  +void builFrontCameraType()
+  +Robot* getRobot()
+}
+
+class RobotWaffleWithoutFC{
+  -Robot *robot
+  +RobotBurgerWithFC()
+  +void buildRobotType()
+  +void buildCameraType()
+  +void builFrontCameraType()
+  +Robot* getRobot()
+}
+
+class Contractor{
+  -RobotBuilder *robotBuilder
+  +Contractor()
+  +void buildRobot()
+  +Robot* getRobot()
+}
+
 Contractor o-- RobotBuilder
 RobotBuilder <|-- RobotBurgerWithFC
 RobotBuilder <|-- RobotWaffleWithoutFC
